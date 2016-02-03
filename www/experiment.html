@@ -238,7 +238,7 @@ function start(timeline) {
     on_data_update: function(data) {
       socket.emit('write-data',{
           "collection": "competitive_sampling_exp_1",
-          "data": {test: Math.floor(Math.random()*1000)}
+          "data": data
       });
     }
   });
