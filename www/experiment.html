@@ -82,9 +82,9 @@ socket.emit('join', {experiment: 'competitive-sampling', participants: 2});
 
 socket.on('start', function(data){
   player_id = data.player_id;
-  jsPsych.data.addProperties({player_id: player_id, subject_id: player_id + session_id});
   var trials = get_random_trials();
   socket.once('sync-reply', function(reply){
+    jsPsych.data.addProperties({player_id: player_id, subject_id: player_id + "-" + session_id});
     load_experiment(reply.content);
   });
   socket.emit('sync',{
