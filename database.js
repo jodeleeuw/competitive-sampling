@@ -20,5 +20,6 @@ module.exports = {
     for(var i=0; i<data.length; i++){
       this.connection.query('INSERT INTO ?? SET ?', [table, data], function(err, result){});
     }
+    this.connection.end();
   }
 }
