@@ -20,6 +20,5 @@ module.exports = {
         console.log('connection to mongodb failed');
       }
     })
-
   }
 }
