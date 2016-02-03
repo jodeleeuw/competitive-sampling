@@ -123,6 +123,7 @@ function create_room(id, experiment_id, total_participants){
       socket.join(this.id);
       socket.room_id = this.id;
       if(this.participants() == total_participants){
+        console.log('Starting room '+this.id);
         this.start();
       }
     },
