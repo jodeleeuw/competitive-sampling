@@ -70,7 +70,7 @@ document.addEventListener("contextmenu", function(e){
 </script>
 <script>
 
-var socket = io.connect('http://localhost:3000');
+var socket = io.connect('http://perceptsconcepts.psych.indiana.edu:3000');
 var player_id;
 
 socket.once('join-reply', function(data){
