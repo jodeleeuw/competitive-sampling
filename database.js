@@ -13,7 +13,14 @@ module.exports = {
   write: function(q){
     var table = q.table;
     var data = q.data;
-    this.connection.connect();
+    this.connection.connect(function(err){
+      if(err){
+        console.error('error connecting ' + err.stack);
+        return;
+      } else {
+        console.log('connected as id ' + this.connection.threadId);
+      }
+    });
     if(!Array.isArray(data)) {
       data = [data];
     }

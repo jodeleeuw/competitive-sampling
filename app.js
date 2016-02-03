@@ -65,6 +65,7 @@ io.on('connection', function (socket) {
   });
 
   socket.on('write-data', function(data){
+    console.log('data to write '+JSON.stringify(data));
     database.write(data);
   });
 
