@@ -122,6 +122,7 @@ function create_room(id, experiment_id, total_participants){
     join: function(socket) {
       socket.join(this.id);
       socket.room_id = this.id;
+      console.log(this.participants() + ' of ' + total_participants + ' ready in room '+this.id);
       if(this.participants() == total_participants){
         console.log('Starting room '+this.id);
         this.start();
