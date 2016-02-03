@@ -2,6 +2,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var url = 'mongodb://perceptsconcepts.psych.indiana.edu:27017/test';
 MongoClient.connect(url, function(err, db){
+  console.log(err);
   if(err !== null){
     db.collection('teams').insertOne({field: 'value1'});
     console.log('MongoDB connection successful!');
