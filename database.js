@@ -1,8 +1,9 @@
 var MongoClient = require('mongodb').MongoClient;
 
 var url = 'mongodb://perceptsconcepts.psych.indiana.edu:27017/test';
-MongoClient.connect(url, function(err,db){
+MongoClient.connect(url, function(err, db){
   if(err !== null){
+    db.testitems.save({field: 'value1'});
     console.log('MongoDB connection successful!');
     db.close();
   } else {
