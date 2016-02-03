@@ -1,0 +1,16 @@
+{
+  "name": "competitive-sampling-node",
+  "version": "0.0.1",
+  "description": "A competitive sampling experiment framework",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Josh de Leeuw",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.7",
+    "node-uuid": "^1.4.1"
+  }
+}
