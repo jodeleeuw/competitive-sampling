@@ -5,6 +5,8 @@ MongoClient.connect(url, function(err,db){
   if(err !== null){
     console.log('MongoDB connection successful!');
     db.close();
+  } else {
+    console.log('connection to mongodb failed');
   }
 })
 
