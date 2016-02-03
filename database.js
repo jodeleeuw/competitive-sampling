@@ -1,5 +1,16 @@
-var mysql = require('mysql');
-var db_config = require('./db-config.json');
+var MongoClient = require('mongodb').MongoClient;
+
+var url = 'mongodb://localhost:27017/test';
+MongoClient.connect(url, function(err,db){
+  if(err !== null){
+    console.log('MongoDB connection successful!');
+    db.close();
+  }
+})
+
+
+
+/*var db_config = require('./db-config.json');
 
 var connection = mysql.createConnection({
   host: db_config.host,
@@ -30,3 +41,4 @@ module.exports = {
     connection.end();
   }
 }
+*/
