@@ -236,10 +236,10 @@ function start(timeline) {
     display_element: $('#jspsych-target'),
     on_finish: function() { jsPsych.data.displayData(); },
     on_data_update: function(data) {
-      socket.emit('write-data',{
+      /*socket.emit('write-data',{
           "table": "competitive_sampling_exp_1",
           "data": data
-      });
+      });*/
     }
   });
 }
