@@ -106,6 +106,10 @@ function create_room(id, experiment_id, total_participants){
     started: false,
     participants: function() {
       try {
+        console.log('in participants...');
+        console.log(JSON.stringify(Object.keys(io.nsps['/'].adapter.rooms[this.id])));
+        console.log(JSON.stringify(Object.keys(io.nsps['/'].adapter.rooms[this.id].sockets)));
+        console.log(JSON.stringify(Object.keys(io.nsps['/'].adapter.rooms[this.id].length)));
         return Object.keys(io.nsps['/'].adapter.rooms[this.id]).length;
       } catch (e) {
         //console.log(e);
