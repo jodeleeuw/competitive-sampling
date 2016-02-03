@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var database = require('./database');
 
 server.listen(3000);
 
@@ -61,6 +62,10 @@ io.on('connection', function (socket) {
     if(rooms[socket.room_id].messages.sync[id].count == rooms[socket.room_id].participants()){
       io.emit('sync-reply', {id: id, content: rooms[socket.room_id].messages.sync[id].content});
     }
+  });
+
+  socket.on('write-data', function(data){
+    database.write(data);
   });
 
 });

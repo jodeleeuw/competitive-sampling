@@ -235,8 +235,11 @@ function start(timeline) {
     timeline: timeline,
     display_element: $('#jspsych-target'),
     on_finish: function() { jsPsych.data.displayData(); },
-    on_data_update: function() {
-      // write to server
+    on_data_update: function(data) {
+      socket.emit('write-data',{
+          "table": "competitive_sampling_exp_1",
+          "data": data
+      });
     }
   });
 }
