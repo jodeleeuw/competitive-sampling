@@ -131,6 +131,7 @@ function create_room(id, experiment_id, total_participants){
     start: function(){
       this.started = true;
       var clients = io.nsps['/'].adapter.rooms[this.id];
+      console.log(JSON.stringify(Object.keys(clients)));
       var idx = 0;
       for(var c in clients){
         io.sockets.connected[c].player_id = idx;
