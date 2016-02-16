@@ -296,12 +296,12 @@ jsPsych["competitive-sampling"] = (function() {
         "position:fixed; top:0; left: 0; z-index:1000; width:100%; height:100%; " +
         "background-color:rgba(255,255,255,0.8)'>";
       tie_html += "<div id='jspsych-competitive-sampling-waiting' style='" +
-        "width: 20%; height: 20%; background-color: #fee; border: 2px solid #faa; " +
-        "position: fixed; z-index: 1001; top: 40%; left: 40%; border-radius: 5px;'>";
+        "width: 25%; height: 20%; background-color: #eee; border: 2px solid #aaa; " +
+        "position: fixed; z-index: 1001; top: 20%; left: 32.5%; border-radius: 5px;'>";
       tie_html += "<div style='display:table; height: 100%; width:100%;'>";
       tie_html += "<div style='display:table-cell; vertical-align: middle;'>";
-      tie_html += "<p style='text-align:center; color: #f44;'>Someone else chose the same box as you, and they won the coin flip. You need to choose a different box.</p>";
-      tie_html += "<div><button id='jspsych-competitive-sampling-tie-next' class='jspsych-btn'>OK</button></div>";
+      tie_html += "<p style='text-align:center; color: #444;'>Someone else chose the same box as you, and they won the coin flip. You need to choose a different box.</p>";
+      tie_html += "<div style='text-align:center;'><button id='jspsych-competitive-sampling-tie-next' class='jspsych-btn'>OK</button></div>";
       tie_html += "</div></div></div></div>";
       display_element.append(tie_html);
 
