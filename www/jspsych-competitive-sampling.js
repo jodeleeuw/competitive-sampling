@@ -208,6 +208,10 @@ jsPsych["competitive-sampling"] = (function() {
           'border-width': '3px',
           'padding': '4px 10px',
         });
+        $('#jspsych-competitive-sampling-sample-btn').css({
+          'border-width': '1px',
+          'padding': '6px 12px',
+        });
       }
     }
 
