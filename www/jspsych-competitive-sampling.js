@@ -140,6 +140,7 @@ jsPsych["competitive-sampling"] = (function() {
     }
 
     function enable_btns() {
+      // urns
       $('.jspsych-competitive-sampling-enabled').on('click', function() {
         if(typeof current_action == 'undefined'){
           return;
@@ -151,6 +152,8 @@ jsPsych["competitive-sampling"] = (function() {
           choose(current_selection);
         }
       }).css('cursor', 'pointer');;
+
+      // the final choice btn
       $('#jspsych-competitive-sampling-choose-btn').on('click', function() {
         $(this).css({
           'border-width': '3px',
@@ -161,18 +164,25 @@ jsPsych["competitive-sampling"] = (function() {
           'padding': '6px 12px',
         });
         current_action = 'choose';
-      }).css('cursor', 'pointer');;
-      $('#jspsych-competitive-sampling-sample-btn').on('click', function() {
-        $(this).css({
-          'border-width': '3px',
-          'padding': '4px 10px',
-        });
-        $('#jspsych-competitive-sampling-choose-btn').css({
-          'border-width': '1px',
-          'padding': '6px 12px',
-        });
-        current_action = 'sample';
-      }).css('cursor', 'pointer');;
+      }).css('cursor', 'pointer');
+
+      // the sample btn
+      // disable this btn if there is only one choice left
+      var urns_remaining = $('.jspsych-competitive-sampling-enabled').length;
+
+      if(urns_remaining > 1){
+        $('#jspsych-competitive-sampling-sample-btn').on('click', function() {
+          $(this).css({
+            'border-width': '3px',
+            'padding': '4px 10px',
+          });
+          $('#jspsych-competitive-sampling-choose-btn').css({
+            'border-width': '1px',
+            'padding': '6px 12px',
+          });
+          current_action = 'sample';
+        }).css('cursor', 'pointer');
+      }
     }
 
     function disable_urn(urn_id) {
