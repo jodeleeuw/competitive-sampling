@@ -135,8 +135,18 @@ jsPsych["competitive-sampling"] = (function() {
 
     function disable_btns() {
       $('.jspsych-competitive-sampling-enabled').off('click').css('cursor', 'not-allowed');
-      $('#jspsych-competitive-sampling-choose-btn').off('click').css('cursor', 'not-allowed');
-      $('#jspsych-competitive-sampling-sample-btn').off('click').css('cursor', 'not-allowed');
+      $('#jspsych-competitive-sampling-choose-btn').off('click').css({
+        'cursor': 'not-allowed',
+        'color': disabled_font_color,
+        'background-color': disabled_color,
+        'border-color': disabled_border_color
+      });
+      $('#jspsych-competitive-sampling-sample-btn').off('click').css({
+        'cursor': 'not-allowed',
+        'color': disabled_font_color,
+        'background-color': disabled_color,
+        'border-color': disabled_border_color
+      });
     }
 
     function enable_btns() {
@@ -151,7 +161,12 @@ jsPsych["competitive-sampling"] = (function() {
         } else {
           choose(current_selection);
         }
-      }).css('cursor', 'pointer');;
+      }).css({
+        'cursor': 'pointer',
+        'color': action_font_color,
+        'background-color': action_color,
+        'border-color': action_border_color
+      });
 
       // the final choice btn
       $('#jspsych-competitive-sampling-choose-btn').on('click', function() {
@@ -164,7 +179,12 @@ jsPsych["competitive-sampling"] = (function() {
           'padding': '6px 12px',
         });
         current_action = 'choose';
-      }).css('cursor', 'pointer');
+      }).css({
+        'cursor': 'pointer',
+        'color': action_font_color,
+        'background-color': action_color,
+        'border-color': action_border_color
+      });
 
       // the sample btn
       // disable this btn if there is only one choice left
@@ -182,6 +202,12 @@ jsPsych["competitive-sampling"] = (function() {
           });
           current_action = 'sample';
         }).css('cursor', 'pointer');
+      } else {
+        current_action = 'sample';
+        $('#jspsych-competitive-sampling-choose-btn').css({
+          'border-width': '3px',
+          'padding': '4px 10px',
+        });
       }
     }
 
