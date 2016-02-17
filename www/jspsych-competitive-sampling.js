@@ -95,6 +95,7 @@ jsPsych["competitive-sampling"] = (function() {
     }
 
     var current_selection = null;
+    var current_action = 'sample';
     var sample_value = null;
     var urn_choice = null;
     var choice_value = null;
@@ -186,6 +187,17 @@ jsPsych["competitive-sampling"] = (function() {
         'border-color': action_border_color
       });
 
+      if(current_action == 'choose'){
+        $('#jspsych-competitive-sampling-choose-btn').css({
+          'border-width': '3px',
+          'padding': '4px 10px',
+        });
+        $('#jspsych-competitive-sampling-sample-btn').css({
+          'border-width': '1px',
+          'padding': '6px 12px',
+        });
+      }
+
       // the sample btn
       // disable this btn if there is only one choice left
       var urns_remaining = $('.jspsych-competitive-sampling-enabled').length;
@@ -201,7 +213,24 @@ jsPsych["competitive-sampling"] = (function() {
             'padding': '6px 12px',
           });
           current_action = 'sample';
-        }).css('cursor', 'pointer');
+        }).css({
+          'cursor': 'pointer',
+          'color': action_font_color,
+          'background-color': action_color,
+          'border-color': action_border_color
+        });
+
+        if(current_action == 'sample'){
+          $('#jspsych-competitive-sampling-sample-btn').css({
+            'border-width': '3px',
+            'padding': '4px 10px',
+          });
+          $('#jspsych-competitive-sampling-choose-btn').css({
+            'border-width': '1px',
+            'padding': '6px 12px',
+          });
+        }
+
       } else {
         current_action = 'choose';
         $('#jspsych-competitive-sampling-choose-btn').css({
