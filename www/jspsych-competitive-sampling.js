@@ -203,7 +203,7 @@ jsPsych["competitive-sampling"] = (function() {
           current_action = 'sample';
         }).css('cursor', 'pointer');
       } else {
-        current_action = 'sample';
+        current_action = 'choose';
         $('#jspsych-competitive-sampling-choose-btn').css({
           'border-width': '3px',
           'padding': '4px 10px',
