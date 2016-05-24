@@ -57,9 +57,9 @@ jsPsych["competitive-sampling"] = (function() {
       btn_html += "<button id='jspsych-competitive-sampling-choose-btn' class='jspsych-btn jspsych-competitive-sampling-option-btn'>Make a final choice</button>"
       btn_html += "</div>";
 
-      display_element.append(btn_html);
+      //display_element.append(btn_html);
 
-      $('.jspsych-competitive-sampling-option-btn').css({
+      /*$('.jspsych-competitive-sampling-option-btn').css({
         'background-color': action_color,
         'color': action_font_color,
         'border-color': action_border_color
@@ -67,12 +67,12 @@ jsPsych["competitive-sampling"] = (function() {
         $(this).css({
           //'background-color': action_hover_color
         });
-      });
+      });*/
 
       // display urns on the screen
-      var urn_html = "<div id='jspsych-competitive-sampling-urns' style='display: flex; width: 100%;'>";
+      var urn_html = "<div id='jspsych-competitive-sampling-urns' style='display: flex; width: 100%; justify-content: center;'>";
       for (var i = 0; i < trial.urns.length; i++) {
-        urn_html += "<div class='mdl-card mdl-shadow--2dp'>";
+        urn_html += "<div class='jspsych-competitive-sampling-urn mdl-card mdl-shadow--2dp'>";
         urn_html += "<div class='mdl-card__title mdl-card--expand'>";
         urn_html += "<h4>" + trial.urns[i].label + "</h4>"
         urn_html += "</div>"
