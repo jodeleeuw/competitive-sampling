@@ -50,7 +50,6 @@ jsPsych["competitive-sampling"] = (function() {
       round_html += "</div>";
       display_element.html(round_html);
 
-
       // add btns to screen
       var btn_html = "<div id='jspsych-competitive-sampling-options'>"
       btn_html += "<span class='jspsych-competitive-sampling-option-label'>What would you like to do?</span>"
@@ -71,14 +70,15 @@ jsPsych["competitive-sampling"] = (function() {
       });
 
       // display urns on the screen
-      var urn_html = "<div id='jspsych-competitive-sampling-urns' style='display:table; width:100%;'>";
-      urn_html += "<div style='display:table-row;'>";
-      urn_html += "<div style='display:table-cell;width:" + 100 / trial.urns.length + "%; vertical-align: middle;'><span class='jspsych-competitive-sampling-urn-label'>Which option?</span></div>"
+      var urn_html = "<div id='jspsych-competitive-sampling-urns' style='display: flex; width: 100%;'>";
       for (var i = 0; i < trial.urns.length; i++) {
-        urn_html += "<div style='display:table-cell; text-align: center; width:" + 100 / trial.urns.length + "%;'>";
-        urn_html += "<div class='jspsych-btn jspsych-competitive-sampling-urn jspsych-competitive-sampling-enabled' data-urnid='" + i + "'";
-        urn_html += "style='border-color:" + enabled_border_color + "; background-color:" + enabled_color + "; color:" + enabled_font_color + ";'>";
-        urn_html += "<span>" + trial.urns[i].label + "</span>";
+        urn_html += "<div class='mdl-card mdl-shadow--2dp'>";
+        urn_html += "<div class='mdl-card__title mdl-card--expand'>";
+        urn_html += "<h4>" + trial.urns[i].label + "</h4>"
+        urn_html += "</div>"
+        urn_html += "<div class='mdl-card__actions mdl-card--border'>"
+        urn_html += "<a class='mdl-button mdl-button--colored'>Sample</a>"
+        urn_html += "<a class='mdl-button mdl-button--colored'>Choose</a>"
         urn_html += "</div></div>"
       }
       urn_html += "</div>"
