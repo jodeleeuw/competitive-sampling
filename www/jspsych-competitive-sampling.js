@@ -44,7 +44,7 @@ jsPsych["competitive-sampling"] = (function() {
       wait_html += '<p>Waiting for other players to finish their turn.</p>'
       wait_html += '</div>'
       wait_html += '</dialog>'
-      display_element.append(wait_html);
+      display_element.html(wait_html);
       var dialog = document.querySelector('dialog');
       if(!dialog.showModal){
         dialogPolyfill.registerDialog(dialog);
@@ -60,7 +60,7 @@ jsPsych["competitive-sampling"] = (function() {
       }
       round_html += "number " + trial.round + " out of " + trial.total_rounds + " rounds</p>";
       round_html += "</div>";
-      display_element.html(round_html);
+      display_element.append(round_html);
 
       // add btns to screen
       var btn_html = "<div id='jspsych-competitive-sampling-options'>"
