@@ -77,8 +77,8 @@ jsPsych["competitive-sampling"] = (function() {
         urn_html += "<h4>" + trial.urns[i].label + "</h4>"
         urn_html += "</div>"
         urn_html += "<div class='mdl-card__actions mdl-card--border'>"
-        urn_html += "<button class='mdl-button mdl-button--colored'>Sample</button>"
-        urn_html += "<button class='mdl-button mdl-button--colored'>Choose</button>"
+        urn_html += "<button class='mdl-button mdl-button--colored' onclick='sample("+i+")'>Sample</button>"
+        urn_html += "<button class='mdl-button mdl-button--colored' onclick='choose("+i+")'>Choose</button>"
         urn_html += "</div></div>"
       }
       urn_html += "</div>"
@@ -104,7 +104,7 @@ jsPsych["competitive-sampling"] = (function() {
 
     enable_btns();
 
-    function draw_sample(urn) {
+    function sample(urn) {
       sample_value = trial.urns[urn].sample_function();
       sample_data.push({
         urn: urn,
