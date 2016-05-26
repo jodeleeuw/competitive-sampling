@@ -38,6 +38,17 @@ jsPsych["competitive-sampling"] = (function() {
 
     function draw_html() {
 
+      // create wait dialog
+      var wait_html = '<dialog class="mdl-dialog">'
+      wait_html += '<div class="mdl-dialog__content">'
+      wait_html += '<p>Waiting for other players to finish their turn.</p>'
+      wait_html += '</div>'
+      display_element.append(wait_html);
+      var dialog = document.querySelector('dialog');
+      if(!dialog.showModal){
+        dialogPolyfill.registerDialog(dialog);
+      }
+
       // display round information at the top
       var round_html = "<div id='jspsych-competitive-sampling-round-display'>";
       round_html += "<p>";
@@ -288,22 +299,13 @@ jsPsych["competitive-sampling"] = (function() {
     }
 
     function show_wait_screen() {
-      var wait_html = "<div id='jspsych-competitive-sampling-waiting-screen' style='" +
-        "position:fixed; top:0; left: 0; z-index:1000; width:100%; height:100%; " +
-        "background-color:rgba(255,255,255,0.5)'>";
-      wait_html += "<div id='jspsych-competitive-sampling-waiting' style='" +
-        "width: 100%; height: 150px; background-color: #fee; border: 2px solid #faa; " +
-        "position: fixed; z-index: 1001; top: 0; left: 0; border-radius: 5px;'>";
-      wait_html += "<div style='display:table; height: 100%; width:100%;'>";
-      wait_html += "<div style='display:table-cell; vertical-align: middle;'>";
-      wait_html += "<p style='text-align:center; color: #f44;'>Waiting for other players to respond</p>";
-      wait_html += "<div class='spinner'><div class='bounce1'></div><div class='bounce2'></div><div class='bounce3'></div></div>";
-      wait_html += "</div></div></div></div>";
-      display_element.append(wait_html);
+      var dialog = document.querySelector('dialog');
+      dialog.showModal();
     }
 
     function hide_wait_screen() {
-      $('#jspsych-competitive-sampling-waiting-screen').remove();
+      var dialog = document.querySelector('dialog');
+      dialog.close();
     }
 
     function after_sample(message) {
