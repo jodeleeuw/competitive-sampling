@@ -163,7 +163,7 @@ jsPsych["competitive-sampling"] = (function() {
     }
 
     function disable_urn(urn_id) {
-      $('.jspsych-competitive-sampling-urn[data-urnid='+urn_id+'] button').attr('disabled');
+      $('.jspsych-competitive-sampling-urn[data-urnid='+urn_id+'] button').attr('disabled', true);
     }
 
     function wait_for_other_players() {
