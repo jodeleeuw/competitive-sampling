@@ -87,16 +87,16 @@ jsPsych["competitive-sampling"] = (function() {
 
       display_element.append(urn_html);
 
+      $('.jspsych-competitive-sampling-sample-btn').click(function(e){
+        alert('$(this).data('urn-id')');
+      });
+
       for (var i = 0; i < trial.urns.length; i++) {
         if (trial.urns[i].disabled === true || (Array.isArray(trial.urns[i].disabled) && trial.urns[i].disabled.indexOf(trial.player_id) > -1)) {
           disable_urn(i);
         }
       }
     }
-
-    $('.jspsych-competitive-sampling-sample-btn').click(function(e){
-      alert($(this).data('urn-id'));
-    });
 
     var sample_value = null;
     var urn_choice = null;
