@@ -88,7 +88,7 @@ jsPsych["competitive-sampling"] = (function() {
       display_element.append(urn_html);
 
       $('.jspsych-competitive-sampling-sample-btn').click(function(e){
-        alert($(this).data('urn-id'));
+        alert($(this).data('urnid'));
       });
 
       for (var i = 0; i < trial.urns.length; i++) {
