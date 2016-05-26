@@ -72,7 +72,7 @@ jsPsych["competitive-sampling"] = (function() {
       // display urns on the screen
       var urn_html = "<div id='jspsych-competitive-sampling-urns' style='display: flex; width: 100%; justify-content: center;'>";
       for (var i = 0; i < trial.urns.length; i++) {
-        urn_html += "<div class='jspsych-competitive-sampling-urn mdl-card mdl-shadow--2dp'>";
+        urn_html += "<div class='jspsych-competitive-sampling-urn mdl-card mdl-shadow--2dp' data-urnid="+i+">";
         urn_html += "<div class='mdl-card__title mdl-card--expand'>";
         urn_html += "<h4>" + trial.urns[i].label + "</h4>"
         urn_html += "</div>"
@@ -163,19 +163,7 @@ jsPsych["competitive-sampling"] = (function() {
     }
 
     function disable_urn(urn_id) {
-      $("div[data-urnid=" + urn_id + "]").
-      removeClass('jspsych-competitive-sampling-enabled').
-      addClass('jspsych-competitive-sampling-disabled').
-      css({
-        'cursor': 'not-allowed',
-        'color': disabled_font_color,
-        'background-color': disabled_color,
-        'border-color': disabled_border_color
-      }).hover(
-        function() {
-          $(this).css("border-color", disabled_border_color);
-        }
-      );
+      $('.jspsych-competitive-sampling-urn[data-urnid='+urn_id+'] button').attr('disabled');
     }
 
     function wait_for_other_players() {
