@@ -77,8 +77,8 @@ jsPsych["competitive-sampling"] = (function() {
         urn_html += "<h4>" + trial.urns[i].label + "</h4>"
         urn_html += "</div>"
         urn_html += "<div class='mdl-card__actions mdl-card--border'>"
-        urn_html += "<a class='mdl-button mdl-button--colored'>Sample</a>"
-        urn_html += "<a class='mdl-button mdl-button--colored'>Choose</a>"
+        urn_html += "<button class='mdl-button mdl-button--colored'>Sample</button>"
+        urn_html += "<button class='mdl-button mdl-button--colored'>Choose</button>"
         urn_html += "</div></div>"
       }
       urn_html += "</div>"
