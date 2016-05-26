@@ -43,6 +43,7 @@ jsPsych["competitive-sampling"] = (function() {
       wait_html += '<div class="mdl-dialog__content">'
       wait_html += '<p>Waiting for other players to finish their turn.</p>'
       wait_html += '</div>'
+      wait_html += '</dialog>'
       display_element.append(wait_html);
       var dialog = document.querySelector('dialog');
       if(!dialog.showModal){
