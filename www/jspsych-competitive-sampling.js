@@ -80,25 +80,6 @@ jsPsych["competitive-sampling"] = (function() {
       round_html += "</div>";
       display_element.append(round_html);
 
-      // add btns to screen
-      var btn_html = "<div id='jspsych-competitive-sampling-options'>"
-      btn_html += "<span class='jspsych-competitive-sampling-option-label'>What would you like to do?</span>"
-      btn_html += "<button id='jspsych-competitive-sampling-sample-btn' class='jspsych-btn jspsych-competitive-sampling-option-btn'>Take a sample</button>"
-      btn_html += "<button id='jspsych-competitive-sampling-choose-btn' class='jspsych-btn jspsych-competitive-sampling-option-btn'>Make a final choice</button>"
-      btn_html += "</div>";
-
-      //display_element.append(btn_html);
-
-      /*$('.jspsych-competitive-sampling-option-btn').css({
-        'background-color': action_color,
-        'color': action_font_color,
-        'border-color': action_border_color
-      }).hover(function() {
-        $(this).css({
-          //'background-color': action_hover_color
-        });
-      });*/
-
       // display urns on the screen
       var urn_html = "<div id='jspsych-competitive-sampling-urns' style='display: flex; flex-flow: row wrap; width: 100%; justify-content: center;'>";
       for (var i = 0; i < trial.urns.length; i++) {
@@ -157,7 +138,6 @@ jsPsych["competitive-sampling"] = (function() {
     }
 
     function choose(urn) {
-      hide_options();
       urn_choice = urn;
       var ev = trial.urns[urn].payoff();
       choice_value = ev;
