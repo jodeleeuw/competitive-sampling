@@ -39,13 +39,28 @@ jsPsych["competitive-sampling"] = (function() {
     function draw_html() {
 
       // create wait dialog
-      var wait_html = '<dialog class="mdl-dialog">'
+      var wait_html = '<dialog id="wait-dialog" class="mdl-dialog">'
       wait_html += '<div class="mdl-dialog__content">'
       wait_html += '<p>Waiting for other players to finish their turn.</p>'
       wait_html += '</div>'
       wait_html += '</dialog>'
       display_element.html(wait_html);
-      var dialog = document.querySelector('dialog');
+      var dialog = document.querySelector('#wait-dialog');
+      if(!dialog.showModal){
+        dialogPolyfill.registerDialog(dialog);
+      }
+
+      // create tie dialog
+      var tie_html = '<dialog id="tie-dialog" class="mdl-dialog">'
+      tie_html += '<div class="mdl-dialog__content">'
+      tie_html += '<p>Someone else chose the same box as you, and they won the coin flip. You need to choose a different box.</p>'
+      tie_html += '</div>'
+      tie_html += '<div class="mdl-dialog__actions">'
+      tie_html += '<button id="tie-dialog-ok" type="button" class="mdl-button">OK</button>'
+      tie_html += '</div>'
+      tie_html += '</dialog>'
+      display_element.append(tie_html);
+      var dialog = document.querySelector('#tie-dialog');
       if(!dialog.showModal){
         dialogPolyfill.registerDialog(dialog);
       }
@@ -300,12 +315,12 @@ jsPsych["competitive-sampling"] = (function() {
     }
 
     function show_wait_screen() {
-      var dialog = document.querySelector('dialog');
+      var dialog = document.querySelector('#wait-dialog');
       dialog.showModal();
     }
 
     function hide_wait_screen() {
-      var dialog = document.querySelector('dialog');
+      var dialog = document.querySelector('#wait-dialog');
       dialog.close();
     }
 
