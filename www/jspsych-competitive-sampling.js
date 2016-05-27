@@ -289,9 +289,8 @@ jsPsych["competitive-sampling"] = (function() {
     }
 
     function after_sample(message) {
-      disable_btns();
+
       render_sample_history();
-      hide_options();
 
       setTimeout(function() {
         socket.emit('turn', message);
