@@ -100,7 +100,7 @@ jsPsych["competitive-sampling"] = (function() {
       });*/
 
       // display urns on the screen
-      var urn_html = "<div id='jspsych-competitive-sampling-urns' style='display: flex; width: 100%; justify-content: center;'>";
+      var urn_html = "<div id='jspsych-competitive-sampling-urns' style='display: flex; flex-flow: row wrap; width: 100%; justify-content: center;'>";
       for (var i = 0; i < trial.urns.length; i++) {
         urn_html += "<div class='jspsych-competitive-sampling-urn mdl-card mdl-shadow--2dp' data-urnid="+i+">";
         urn_html += "<div class='mdl-card__title mdl-card--expand'>";
@@ -249,7 +249,7 @@ jsPsych["competitive-sampling"] = (function() {
             wait_for_other_players();
           } else {
             if(!identical_choice){
-              
+
             } // otherwise we have them clear the tie_dialog window.
           }
         }
