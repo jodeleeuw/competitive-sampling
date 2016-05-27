@@ -61,6 +61,9 @@ jsPsych["competitive-sampling"] = (function() {
       tie_html += '</dialog>'
       display_element.append(tie_html);
       var dialog = document.querySelector('#tie-dialog');
+      dialog.querySelector('#tie-dialog-ok').addEventListener('click', function() {
+        dialog.close();
+      });
       if(!dialog.showModal){
         dialogPolyfill.registerDialog(dialog);
       }
@@ -294,24 +297,8 @@ jsPsych["competitive-sampling"] = (function() {
     }
 
     function show_tie_dialog() {
-      var tie_html = "<div id='jspsych-competitive-sampling-tie-dialog' style='" +
-        "position:fixed; top:0; left: 0; z-index:1000; width:100%; height:100%; " +
-        "background-color:rgba(255,255,255,0.5)'>";
-      tie_html += "<div id='jspsych-competitive-sampling-waiting' style='" +
-        "width: 25%; height: 20%; background-color: #eee; border: 2px solid #aaa; " +
-        "position: fixed; z-index: 1001; top: 20%; left: 32.5%; border-radius: 5px;'>";
-      tie_html += "<div style='display:table; height: 100%; width:100%;'>";
-      tie_html += "<div style='display:table-cell; vertical-align: middle;'>";
-      tie_html += "<p style='text-align:center; color: #444; padding: 0px 20px;'>Someone else chose the same box as you, and they won the coin flip. You need to choose a different box.</p>";
-      tie_html += "<div style='text-align:center;'><button id='jspsych-competitive-sampling-tie-next' class='jspsych-btn'>OK</button></div>";
-      tie_html += "</div></div></div></div>";
-      display_element.append(tie_html);
-
-      $('#jspsych-competitive-sampling-tie-next').click(function(){
-        $('#jspsych-competitive-sampling-tie-dialog').remove();
-        show_options();
-        enable_btns();
-      });
+      var dialog = document.querySelector('#tie-dialog');
+      dialog.showModal();
     }
 
     function show_wait_screen() {
