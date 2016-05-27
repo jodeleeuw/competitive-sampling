@@ -324,8 +324,6 @@ jsPsych["competitive-sampling"] = (function() {
 
     function render_sample_history() {
 
-      $('.jspsych-competitive-sampling-sample-history-row').remove();
-
       var allurns = [];
       for (var i = 0; i < trial.urns.length; i++) {
         allurns.push([]);
@@ -335,38 +333,18 @@ jsPsych["competitive-sampling"] = (function() {
         allurns[sample_data[i].urn].push(sample_data[i].value);
       }
 
-      var maxlength = 0;
-      for (var i = 0; i < trial.urns.length; i++) {
-        if (allurns[i].length > maxlength) {
-          maxlength = allurns[i].length;
-        }
-      }
-
-      var last_choice = [sample_data[sample_data.length - 1].urn, allurns[sample_data[sample_data.length - 1].urn].length - 1];
-
-      var html = "";
-      for (var i = 0; i < maxlength; i++) {
-        html += "<div class='jspsych-competitive-sampling-sample-history-row' style='display:table-row; width:100%;'>";
-        html += "<div class='sample-history-cell' style='display:table-cell; width:" + 100 / trial.urns.length + "%;'>";
-        if (i == 0) {
-          html += "<span class='sample-history-text'>Sample history:</span>";
-        }
-        html += "</div>";
-        for (var j = 0; j < allurns.length; j++) {
-          html += "<div class='sample-history-cell' style='display:table-cell; text-align: center; width:" + 100 / trial.urns.length + "%;'>";
-          if (typeof allurns[j][i] !== 'undefined') {
-            html += "<span class='sample-history-text'";
-            if (j == last_choice[0] && i == last_choice[1]) {
-              html += " style='font-weight:bold;'";
-            }
-            html += ">" + allurns[j][i] + "</span>";
+      for (var i=0; i<allurns.length; i++){
+        var html = "<p>No samples taken</p>";
+        if(allurns[i].length > 0){
+          html = "<p>"+allurns[i][0];
+          for( var j = 0; j< allurns[i].length; j++){
+            html += ", " + allurns[i][j];
           }
-          html += "</div>";
+          html += "</p>";
+          $('.urn-samples[data-urnid='+i+']').html(html);
         }
-        html += "</div>";
       }
 
-      $('#jspsych-competitive-sampling-urns').append(html);
     }
 
     function end_trial() {
