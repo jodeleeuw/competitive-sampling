@@ -104,7 +104,7 @@ jsPsych["competitive-sampling"] = (function() {
       for (var i = 0; i < trial.urns.length; i++) {
         urn_html += "<div class='jspsych-competitive-sampling-urn mdl-card mdl-shadow--2dp' data-urnid="+i+">";
         urn_html += "<div class='mdl-card__title mdl-card--expand'>";
-        urn_html += "<h4>" + trial.urns[i].label + "</h4>"
+        urn_html += "<h4 class='urn-title' style='text-align: center;'>Option " + trial.urns[i].label + "</h4>"
         urn_html += "</div>"
         urn_html += "<div class='mdl-card__supporting-text urn-samples' data-urnid="+i+"></div>"
         urn_html += "<div class='mdl-card__actions mdl-card--border'>"
