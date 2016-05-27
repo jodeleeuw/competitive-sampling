@@ -336,7 +336,7 @@ jsPsych["competitive-sampling"] = (function() {
         var html = "<p>No samples taken</p>";
         if(allurns[i].length > 0){
           html = "<p>"+allurns[i][0];
-          for( var j = 0; j< allurns[i].length; j++){
+          for( var j = 1; j< allurns[i].length; j++){
             html += ", " + allurns[i][j];
           }
           html += "</p>";
