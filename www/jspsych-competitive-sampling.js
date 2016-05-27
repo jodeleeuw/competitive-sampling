@@ -140,8 +140,6 @@ jsPsych["competitive-sampling"] = (function() {
 
     draw_html();
 
-    enable_btns();
-
     function sample(urn) {
       sample_value = trial.urns[urn].sample_function();
       sample_data.push({
@@ -172,33 +170,12 @@ jsPsych["competitive-sampling"] = (function() {
       wait_for_other_players();
     }
 
-    function disable_btns() {
-      $('.jspsych-competitive-sampling-enabled').off('click').css('cursor', 'not-allowed');
-      $('#jspsych-competitive-sampling-choose-btn').off('click').css({
-        'cursor': 'not-allowed',
-        'color': disabled_font_color,
-        'background-color': disabled_color,
-        'border-color': disabled_border_color
-      });
-      $('#jspsych-competitive-sampling-sample-btn').off('click').css({
-        'cursor': 'not-allowed',
-        'color': disabled_font_color,
-        'background-color': disabled_color,
-        'border-color': disabled_border_color
-      });
-    }
-
-    function enable_btns() {
-
-    }
-
     function disable_urn(urn_id) {
       $('.jspsych-competitive-sampling-urn[data-urnid='+urn_id+'] button').attr('disabled', true);
     }
 
     function wait_for_other_players() {
 
-      disable_btns();
       show_wait_screen();
 
       socket.once('turn-reply', function(data) {
@@ -272,8 +249,7 @@ jsPsych["competitive-sampling"] = (function() {
             wait_for_other_players();
           } else {
             if(!identical_choice){
-              show_options();
-              enable_btns();
+              
             } // otherwise we have them clear the tie_dialog window.
           }
         }
@@ -285,7 +261,7 @@ jsPsych["competitive-sampling"] = (function() {
     }
 
     function show_next_btn() {
-      var next_btn = "<button id='jspsych-competitive-sampling-next-btn' class='jspsych-btn' style='display:block; margin-top:60px; margin-left:auto; margin-right:auto; font-size:24px;'>Next Round</button>";
+      var next_btn = "<button id='jspsych-competitive-sampling-next-btn' class='mdl-button--colored'>Next Round</button>";
       display_element.append(next_btn);
       $('#jspsych-competitive-sampling-next-btn').on('click', function() {
         socket.once('wait-reply', function() {
@@ -330,7 +306,6 @@ jsPsych["competitive-sampling"] = (function() {
 
       // show message
       var html = "<p style='font-size:24px;'>You chose option " + opt + ".</p><p style='font-size:24px;'>The value of your choice is " + value + ".</p>";
-      $('#jspsych-competitive-sampling-options').css('visibility', 'visible').html(html);
 
       // style choice
       $("div[data-urnid=" + urn_choice + "]").css({
@@ -344,16 +319,6 @@ jsPsych["competitive-sampling"] = (function() {
       });
 
       show_next_btn();
-    }
-
-    function hide_options() {
-      $('#jspsych-competitive-sampling-options').css('visibility', 'hidden');
-      $('.jspsych-competitive-sampling-urn-label').css('visibility', 'hidden');
-    }
-
-    function show_options() {
-      $('#jspsych-competitive-sampling-options').css('visibility', 'visible');
-      $('.jspsych-competitive-sampling-urn-label').css('visibility', 'visible');
     }
 
     function render_sample_history() {
