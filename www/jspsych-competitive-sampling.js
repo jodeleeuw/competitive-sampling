@@ -11,21 +11,9 @@ jsPsych["competitive-sampling"] = (function() {
     // set default values for parameters
     trial.feedback_duration = trial.feedback_duration || 1500;
 
-    var action_color = "#ddd";
-    var action_font_color = "#555";
-    var action_border_color = "#555";
 
-    var enabled_color = "#ddd";
-    var enabled_font_color = "#555";
-    var enabled_border_color = "#555";
-
-    var disabled_color = "#efefef";
-    var disabled_font_color = "#ccc";
-    var disabled_border_color = "#ccc";
-
-    var mychoice_color = "#81d4fa";
-    var mychoice_font_color = "#01579b";
-    var mychoice_border_color = "#01579b";
+    // allow variables as functions
+    trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
 
     // store all choice data
     var turn_data = [];
@@ -33,8 +21,13 @@ jsPsych["competitive-sampling"] = (function() {
     // store all sample data
     var sample_data = [];
 
-    // allow variables as functions
-    trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
+    // state variables
+    var sample_value = null;
+    var urn_choice = null;
+    var choice_value = null;
+
+    // start!
+    draw_html();
 
     function draw_html() {
 
@@ -116,12 +109,6 @@ jsPsych["competitive-sampling"] = (function() {
       }
     }
 
-    var sample_value = null;
-    var urn_choice = null;
-    var choice_value = null;
-
-    draw_html();
-
     function sample(urn) {
       sample_value = trial.urns[urn].sample_function();
       sample_data.push({
@@ -148,7 +135,10 @@ jsPsych["competitive-sampling"] = (function() {
         value: ev,
         random_num: Math.random()
       });
-      wait_for_other_players();
+
+      var msg = '<p>You chose '+trial.urns[urn].label+'</p>'
+      msg += '<p>Waiting for other players to make their final choice.</p>'
+      wait_for_other_players(msg);
     }
 
     function disable_urn(urn_id) {
@@ -165,6 +155,9 @@ jsPsych["competitive-sampling"] = (function() {
         turn_data.push(data.data);
 
         // check if two people chose the same urn
+        // count how many people chose each urn
+        // if more than one person chose it, set identical_choice=T
+        // either way, disable the urn and label it with its value.
         var identical_choice = false;
         var choices_for_urns = [];
         for (var i = 0; i < trial.urns.length; i++) {
@@ -176,8 +169,6 @@ jsPsych["competitive-sampling"] = (function() {
             if (choices_for_urns[data.data[i].urn] > 1) {
               identical_choice = true;
             }
-          }
-          if (data.data[i].type == 'choose') {
             disable_urn(data.data[i].urn);
             change_urn_text(data.data[i].urn, data.data[i].value);
           }
@@ -206,10 +197,7 @@ jsPsych["competitive-sampling"] = (function() {
           }
         }
 
-        var trial_complete = true;
-        if (identical_choice) {
-          trial_complete = false;
-        }
+        trial_complete = !identical_choice;
 
         for (var i = 0; i < data.data.length; i++) {
           if (data.data[i].type == 'sample') {
@@ -227,13 +215,8 @@ jsPsych["competitive-sampling"] = (function() {
               urn: urn_choice,
               random_num: 10 // use something > 1 because this choice is locked in
             });
-            wait_for_other_players();
-          } else {
-            if(!identical_choice){
-
-            } // otherwise we have them clear the tie_dialog window.
+            wait_for_other_players(msg);
           }
-        }
       })
     }
 
