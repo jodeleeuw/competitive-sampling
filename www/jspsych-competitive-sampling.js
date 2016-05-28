@@ -81,7 +81,7 @@ jsPsych["competitive-sampling"] = (function() {
         urn_html += "<h4 class='urn-title' style='text-align: center; width: 100%;'>Option " + trial.urns[i].label + "</h4>"
         urn_html += "</div>"
         urn_html += "<div class='mdl-card__supporting-text mdl-card--border urn-samples' data-urnid="+i+"><p>Sample history</p></div>"
-        urn_html += "<div class='mdl-card__actions mdl-card--border' style='text-align: center;'>"
+        urn_html += "<div class='mdl-card__actions mdl-card--border urn-actions' data-urnid="+i+" style='text-align: center;'>"
         urn_html += "<button class='mdl-button mdl-button--colored jspsych-competitive-sampling-sample-btn' data-urnid="+i+">Sample</button>"
         urn_html += "<button class='mdl-button mdl-button--colored jspsych-competitive-sampling-choose-btn' data-urnid="+i+">Choose</button>"
         urn_html += "</div></div>"
@@ -170,7 +170,7 @@ jsPsych["competitive-sampling"] = (function() {
               identical_choice = true;
             }
             disable_urn(data.data[i].urn);
-            change_urn_text(data.data[i].urn, data.data[i].value);
+            show_urn_value(data.data[i].urn, data.data[i].value);
           }
         }
 
@@ -221,8 +221,9 @@ jsPsych["competitive-sampling"] = (function() {
       });
     }
 
-    function change_urn_text(urn, text) {
-      $("div[data-urnid=" + urn + "]").html(text);
+    function show_urn_value(urn, value) {
+      $(".urn-samples[data-urnid=" + urn + "]").html('The value of this choice was '+value);
+      $(".urn-actions[data-urnid="+urn+"]").remove();
     }
 
     function show_next_btn() {
@@ -275,17 +276,6 @@ jsPsych["competitive-sampling"] = (function() {
 
       // show message
       var html = "<p style='font-size:24px;'>You chose option " + opt + ".</p><p style='font-size:24px;'>The value of your choice is " + value + ".</p>";
-
-      // style choice
-      $("div[data-urnid=" + urn_choice + "]").css({
-        'border-color': mychoice_border_color,
-        'color': mychoice_font_color,
-        'background-color': mychoice_color
-      }).hover(function(){
-        $(this).css({
-          'border-color': mychoice_border_color
-        });
-      });
 
       show_next_btn();
     }
