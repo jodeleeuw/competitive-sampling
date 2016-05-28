@@ -217,7 +217,8 @@ jsPsych["competitive-sampling"] = (function() {
             });
             wait_for_other_players(msg);
           }
-      })
+        }
+      });
     }
 
     function change_urn_text(urn, text) {
