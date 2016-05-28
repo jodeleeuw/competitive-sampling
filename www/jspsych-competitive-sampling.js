@@ -40,7 +40,7 @@ jsPsych["competitive-sampling"] = (function() {
 
       // create wait dialog
       var wait_html = '<dialog id="wait-dialog" class="mdl-dialog">'
-      wait_html += '<div class="mdl-dialog__content">'
+      wait_html += '<div id="wait-dialog-message" class="mdl-dialog__content">'
       wait_html += '<p>Waiting for other players to finish their turn.</p>'
       wait_html += '</div>'
       wait_html += '</dialog>'
@@ -155,9 +155,9 @@ jsPsych["competitive-sampling"] = (function() {
       $('.jspsych-competitive-sampling-urn[data-urnid='+urn_id+'] button').attr('disabled', true);
     }
 
-    function wait_for_other_players() {
+    function wait_for_other_players(msg) {
 
-      show_wait_screen();
+      show_wait_screen(msg);
 
       socket.once('turn-reply', function(data) {
         hide_wait_screen();
@@ -258,8 +258,9 @@ jsPsych["competitive-sampling"] = (function() {
       dialog.showModal();
     }
 
-    function show_wait_screen() {
+    function show_wait_screen(message) {
       var dialog = document.querySelector('#wait-dialog');
+      $('#wait-dialog-message').html(message);
       dialog.showModal();
     }
 
@@ -270,11 +271,15 @@ jsPsych["competitive-sampling"] = (function() {
 
     function after_sample(message) {
 
+      var wait_message = '<p>You took a sample from '+trial.urns[message.urn].label+'. The value was '+message.value+'</p>'
+      wait_message += '<p>Waiting for other players to make their choice</p>';
+
       render_sample_history();
+
+      wait_for_other_players(wait_message);
 
       setTimeout(function() {
         socket.emit('turn', message);
-        wait_for_other_players();
       }, trial.feedback_duration);
     }
 
